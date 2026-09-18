@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>زياد حمادة - Portfolio</title>
     <style>
-        /* انيميشن ظهور العناصر */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -17,25 +16,68 @@
             }
         }
 
+        /* المتغيرات والألوان للوضع العادي */
+        :root {
+            --bg-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --subtext-color: #555555;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        /* تنسيقات الوضع الليلي (Dark Mode) */
+        body.dark-mode {
+            --bg-color: #1a1a2e;
+            --card-bg: #16213e;
+            --text-color: #e94560;
+            --subtext-color: #dddddd;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+
         body {
-            background-color: #f4f4f9;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-top: 40px;
+            padding-top: 20px;
             padding-bottom: 50px;
             margin: 0;
             animation: fadeIn 0.8s ease-in-out;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* زر التبديل للوضع الليلي */
+        .theme-toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid #3498db;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 10px var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.05);
         }
 
         h1 {
-            color: #2c3e50;
-            background-color: #ffffff;
+            color: var(--text-color);
+            background-color: var(--card-bg);
             padding: 20px 30px;
             border-radius: 10px;
             display: inline-block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px var(--shadow);
             font-size: 28px;
             transition: transform 0.3s ease;
+            margin-top: 40px;
         }
 
         h1:hover {
@@ -43,7 +85,7 @@
         }
 
         h2 {
-            color: #2c3e50;
+            color: var(--text-color);
             margin-top: 45px;
             margin-bottom: 20px;
             font-size: 22px;
@@ -55,18 +97,17 @@
             border-radius: 50%;
             margin: 20px auto;
             display: block;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 8px var(--shadow);
             object-fit: cover;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.4s ease;
         }
 
         .profile-img:hover {
             transform: rotate(5deg) scale(1.08);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
         .bio-text {
-            color: #555555;
+            color: var(--subtext-color);
             font-size: 18px;
             line-height: 1.6;
             max-width: 500px;
@@ -85,13 +126,11 @@
             border-radius: 6px;
             width: max-content;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
         }
 
         .my-button:hover {
             background-color: #2980b9;
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
         }
 
         .grid-container {
@@ -105,26 +144,25 @@
         }
 
         .skill-card {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 15px 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 5px var(--shadow);
             font-weight: bold;
-            color: #2c3e50;
+            color: var(--text-color);
             border-top: 4px solid #3498db;
             transition: all 0.3s ease;
         }
 
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
         }
 
         .project-card {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 10px var(--shadow);
             width: 250px;
             text-align: center;
             display: flex;
@@ -135,7 +173,6 @@
 
         .project-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .project-card.restaurant {
@@ -148,11 +185,11 @@
 
         .project-card h3 {
             margin-top: 0;
-            color: #2c3e50;
+            color: var(--text-color);
         }
 
         .project-card p {
-            color: #666;
+            color: var(--subtext-color);
             font-size: 14px;
         }
 
@@ -164,37 +201,24 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 14px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: background-color 0.3s ease;
         }
 
         .btn-restaurant {
             background-color: #e74c3c;
         }
-        .btn-restaurant:hover {
-            background-color: #c0392b;
-            transform: scale(1.03);
-        }
 
         .btn-store {
             background-color: #27ae60;
         }
-        .btn-store:hover {
-            background-color: #219150;
-            transform: scale(1.03);
-        }
 
         .contact-section {
-            background-color: white;
+            background-color: var(--card-bg);
             max-width: 600px;
             margin: 30px auto;
             padding: 30px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-section:hover {
-            transform: scale(1.01);
+            box-shadow: 0 4px 15px var(--shadow);
         }
 
         .contact-buttons {
@@ -220,29 +244,26 @@
 
         .whatsapp-btn {
             background-color: #25D366;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-        }
-        .whatsapp-btn:hover {
-            background-color: #1eb857;
-            transform: translateY(-4px);
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
         }
 
         footer {
             margin-top: 50px;
-            color: #777777;
+            color: var(--subtext-color);
             font-size: 14px;
         }
     </style>
 </head>
 <body>
 
+    <!-- زر الوضع الليلي التفاعلي -->
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">🌙 الوضع الليلي</button>
+
     <h1>أهلاً بك في موقعي الأول على GitHub!</h1>
 
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" class="profile-img">
 
     <p class="bio-text">
-        مرحباً! أنا زياد حمادة، مطور مواقع مبتدئ شغوف بتعلم البرمجة وتصميم الصفحات التفاعلية باستخدام HTML و CSS.
+        مرحباً! أنا زياد حمادة، مطور مواقع مبتدئ شغوف بتعلم البرمجة وتصميم الصفحات التفاعلية باستخدام HTML و CSS و JavaScript.
     </p>
 
     <a href="https://github.com/zeaydhamada702-cloud" target="_blank" class="my-button">تصفح حسابي</a>
@@ -252,8 +273,8 @@
     <div class="grid-container">
         <div class="skill-card">HTML5</div>
         <div class="skill-card">CSS3</div>
+        <div class="skill-card">JavaScript (JS)</div>
         <div class="skill-card">Git & GitHub</div>
-        <div class="skill-card">Web Design</div>
     </div>
 
     <!-- قسم معرض الأعمال -->
@@ -276,10 +297,10 @@
         </div>
     </div>
 
-    <!-- قسم التواصل برقم الواتساب -->
+    <!-- قسم التواصل -->
     <h2>تواصل معي لبناء موقعك</h2>
     <div class="contact-section">
-        <p style="color: #555; margin-bottom: 20px;">هل تحتاج إلى صفحة هبوط لمشروعك أو تصميم موقع تفاعلي؟ تواصل معي فوراً!</p>
+        <p style="margin-bottom: 20px;">هل تحتاج إلى صفحة هبوط لمشروعك أو تصميم موقع تفاعلي؟ تواصل معي فوراً!</p>
         <div class="contact-buttons">
             <a href="https://wa.me/201035594142?text=مرحباً%20زياد،%20أريد%20الاستفسار%20عن%20تصميم%20موقع" target="_blank" class="contact-btn whatsapp-btn">
                 💬 مراسلة عبر الواتساب (01035594142)
@@ -290,6 +311,22 @@
     <footer>
         <p>© 2026 جميع الحقوق محفوظة - زياد حمادة</p>
     </footer>
+
+    <!-- كود JavaScript التفاعلي -->
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeToggleBtn');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️ الوضع المضيء';
+            } else {
+                btn.textContent = '🌙 الوضع الليلي';
+            }
+        }
+    </script>
 
 </body>
 </html>
