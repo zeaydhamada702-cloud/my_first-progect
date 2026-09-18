@@ -71,7 +71,7 @@
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 15px;
         }
@@ -86,14 +86,25 @@
             border-top: 4px solid #3498db;
         }
 
+        /* كروت المشاريع */
         .project-card {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             width: 250px;
-            border-top: 4px solid #e74c3c;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card.restaurant {
+            border-top: 4px solid #e74c3c;
+        }
+
+        .project-card.store {
+            border-top: 4px solid #27ae60;
         }
 
         .project-card h3 {
@@ -110,7 +121,6 @@
             display: inline-block;
             margin-top: 10px;
             padding: 8px 16px;
-            background-color: #e74c3c;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -118,8 +128,18 @@
             transition: 0.3s;
         }
 
-        .project-link:hover {
+        .btn-restaurant {
+            background-color: #e74c3c;
+        }
+        .btn-restaurant:hover {
             background-color: #c0392b;
+        }
+
+        .btn-store {
+            background-color: #27ae60;
+        }
+        .btn-store:hover {
+            background-color: #219150;
         }
 
         footer {
@@ -153,10 +173,22 @@
     <!-- قسم معرض الأعمال -->
     <h2>معرض أعمالي</h2>
     <div class="grid-container">
-        <div class="project-card">
-            <h3>صفحة هبوط لمطعم 🍔</h3>
-            <p>تصميم صفحة عروض وجبات تفاعلية للمطاعم مع إمكانية الطلب عبر الواتساب.</p>
-            <a href="https://zeaydhamada702-cloud.github.io/my_first-progect/restaurant.html" class="project-link">معاينة المشروع</a>
+        <!-- المشروع الأول: المطعم -->
+        <div class="project-card restaurant">
+            <div>
+                <h3>صفحة هبوط لمطعم 🍔</h3>
+                <p>تصميم صفحة عروض وجبات تفاعلية للمطاعم مع إمكانية الطلب عبر الواتساب.</p>
+            </div>
+            <a href="https://zeaydhamada702-cloud.github.io/my_first-progect/restaurant.html" class="project-link btn-restaurant">معاينة المشروع</a>
+        </div>
+
+        <!-- المشروع الثاني: المتجر -->
+        <div class="project-card store">
+            <div>
+                <h3>متجر إلكتروني للأزياء 🛍️</h3>
+                <p>تصميم معرض منتجات أنيق للمتاجر والماركات مع إمكانية الشراء المباشر.</p>
+            </div>
+            <a href="https://zeaydhamada702-cloud.github.io/my_first-progect/store.html" class="project-link btn-store">معاينة المشروع</a>
         </div>
     </div>
 
