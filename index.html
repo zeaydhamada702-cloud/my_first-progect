@@ -2,6 +2,7 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>زياد حمادة - Portfolio</title>
     <style>
         body {
@@ -10,6 +11,7 @@
             text-align: center;
             padding-top: 40px;
             padding-bottom: 50px;
+            margin: 0;
         }
 
         h1 {
@@ -24,7 +26,7 @@
 
         h2 {
             color: #2c3e50;
-            margin-top: 40px;
+            margin-top: 45px;
             margin-bottom: 20px;
             font-size: 22px;
         }
@@ -86,7 +88,6 @@
             border-top: 4px solid #3498db;
         }
 
-        /* كروت المشاريع */
         .project-card {
             background-color: white;
             padding: 20px;
@@ -142,6 +143,44 @@
             background-color: #219150;
         }
 
+        .contact-section {
+            background-color: white;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+        .whatsapp-btn:hover {
+            background-color: #1eb857;
+            transform: translateY(-3px);
+        }
+
         footer {
             margin-top: 50px;
             color: #777777;
@@ -173,7 +212,6 @@
     <!-- قسم معرض الأعمال -->
     <h2>معرض أعمالي</h2>
     <div class="grid-container">
-        <!-- المشروع الأول: المطعم -->
         <div class="project-card restaurant">
             <div>
                 <h3>صفحة هبوط لمطعم 🍔</h3>
@@ -182,13 +220,23 @@
             <a href="https://zeaydhamada702-cloud.github.io/my_first-progect/restaurant.html" class="project-link btn-restaurant">معاينة المشروع</a>
         </div>
 
-        <!-- المشروع الثاني: المتجر -->
         <div class="project-card store">
             <div>
                 <h3>متجر إلكتروني للأزياء 🛍️</h3>
                 <p>تصميم معرض منتجات أنيق للمتاجر والماركات مع إمكانية الشراء المباشر.</p>
             </div>
             <a href="https://zeaydhamada702-cloud.github.io/my_first-progect/store.html" class="project-link btn-store">معاينة المشروع</a>
+        </div>
+    </div>
+
+    <!-- قسم التواصل برقم الواتساب الخاص بك -->
+    <h2>تواصل معي لبناء موقعك</h2>
+    <div class="contact-section">
+        <p style="color: #555; margin-bottom: 20px;">هل تحتاج إلى صفحة هبوط لمشروعك أو تصميم موقع تفاعلي؟ تواصل معي فوراً!</p>
+        <div class="contact-buttons">
+            <a href="https://wa.me/201035594142?text=مرحباً%20زياد،%20أريد%20الاستفسار%20عن%20تصميم%20موقع" target="_blank" class="contact-btn whatsapp-btn">
+                💬 مراسلة عبر الواتساب (01035594142)
+            </a>
         </div>
     </div>
 
