@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الأناقة - أحدث صيحات الموضة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: center;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 16px;
+            color: #bdc3c7;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        .grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            width: 270px;
+            overflow: hidden;
+            border-top: 4px solid #3498db;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-body h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+
+        .price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            background-color: #219150;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 35px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        footer {
+            margin-top: 50px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>متجر الأناقة 🛍️</h1>
+        <p>تشكيلة فاخرة من الأحذية والساعات والحقائب بأسعار تنافسية</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">المنتجات الأكثر مبيعاً</h2>
+
+        <div class="grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="حذاء رياضي">
+                <div class="card-body">
+                    <h3>حذاء رياضي أنيق 👟</h3>
+                    <div class="price">850 جنيه</div>
+                    <a href="https://wa.me/201000000000?text=أريد%20شراء%20الحذاء%20الرياضي" target="_blank" class="buy-btn">شراء عبر الواتساب</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="ساعة يد كلاسيك">
+                <div class="card-body">
+                    <h3>ساعة يد كلاسيك ⌚</h3>
+                    <div class="price">1200 جنيه</div>
+                    <a href="https://wa.me/201000000000?text=أريد%20شراء%20الساعة%20الكلاسيك" target="_blank" class="buy-btn">شراء عبر الواتساب</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400" alt="حقيبة ظهر جلدية">
+                <div class="card-body">
+                    <h3>حقيبة ظهر جلدية 🎒</h3>
+                    <div class="price">650 جنيه</div>
+                    <a href="https://wa.me/201000000000?text=أريد%20شراء%20الحقيبة%20الجلدية" target="_blank" class="buy-btn">شراء عبر الواتساب</a>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">← العودة لمعرض الأعمال الرئيسي</a>
+    </div>
+
+    <footer>
+        <p>© 2026 متجر الأناقة - تصميم وتطوير زياد حمادة</p>
+    </footer>
+
+</body>
+</html>
