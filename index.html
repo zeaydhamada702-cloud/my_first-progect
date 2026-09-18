@@ -8,7 +8,7 @@
             background-color: #f4f4f9;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-top: 50px;
+            padding-top: 40px;
         }
 
         /* تنسيق العنوان الرئيسي */
@@ -22,10 +22,21 @@
             font-size: 28px;
         }
 
+        /* تنسيق الصورة الدائرية */
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            object-fit: cover;
+        }
+
         /* تنسيق الزر التفاعلي */
         .my-button {
             display: block;
-            margin: 30px auto;
+            margin: 25px auto;
             padding: 12px 25px;
             background-color: #3498db;
             color: white;
@@ -47,7 +58,10 @@
 
     <h1>أهلاً بك في موقعي الأول على GitHub!</h1>
 
-    <!-- الزر الجديد -->
+    <!-- صورة رمزية توضيحية -->
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile" class="profile-img">
+
+    <!-- الزر التفاعلي -->
     <a href="https://github.com" target="_blank" class="my-button">تصفح حسابي</a>
 
 </body>
