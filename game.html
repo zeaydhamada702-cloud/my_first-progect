@@ -1,1 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>لعبة القفز وتفادي العقبات 🚀 - زياد حمادة</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1a1a2e;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        h1 {
+            margin: 10px 0 5px 0;
+            font-size: 22px;
+            color: #4e54c8;
+            text-shadow: 0 0 10px rgba(78, 84, 200, 0.5);
+        }
+        .score-board {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        #gameCanvas {
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+            border: 3px solid #4e54c8;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 95vw;
+            touch-action: manipulation;
+        }
+        .controls-hint {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #8f94fb;
+        }
+        .btn-home {
+            margin-top: 15px;
+            background: #4e54c8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
 
+    <h1>🚀 لعبة تفادي العوائق</h1>
+    <div class="score-board">
+        النقاط: <span id="score">0</span> | أعلى نتيجة: <span id="highScore">0</span>
+    </div>
+
+    <canvas id="gameCanvas" width="360" height="500"></canvas>
+
+    <div class="controls-hint">اضغط على الشاشة أو زر (المسافة Space) للقفز!</div>
+    <a href="index.html" class="btn-home">العودة للرئيسية 🏠</a>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const scoreEl = document.getElementById("score");
+        const highScoreEl = document.getElementById("highScore");
+
+        let isGameRunning = false;
+        let score = 0;
+        let highScore = localStorage.getItem("obstacle_high_score") || 0;
+        highScoreEl.innerText = highScore;
+
+        let player = {
+            x: 50,
+            y: 200,
+            size: 16,
+            gravity: 0.35,
+            lift: -7.5,
+            velocity: 0
+        };
+
+        let obstacles = [];
+        let frameCount = 0;
+
+        function resetGame() {
+            player.y = 200;
+            player.velocity = 0;
+            obstacles = [];
+            score = 0;
+            scoreEl.innerText = score;
+            isGameRunning = true;
+        }
+
+        function jump() {
+            if (!isGameRunning) {
+                resetGame();
+                gameLoop();
+            } else {
+                player.velocity = player.lift;
+            }
+        }
+
+        window.addEventListener("keydown", (e) => {
+            if (e.code === "Space") jump();
+        });
+        canvas.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            jump();
+        });
+        canvas.addEventListener("mousedown", jump);
+
+        function gameLoop() {
+            if (!isGameRunning) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            player.velocity += player.gravity;
+            player.y += player.velocity;
+
+            ctx.fillStyle = "#ff416c";
+            ctx.beginPath();
+            ctx.arc(player.x, player.y, player.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = "#ff4b2b";
+
+            if (player.y + player.size >= canvas.height || player.y - player.size <= 0) {
+                gameOver();
+                return;
+            }
+
+            frameCount++;
+            if (frameCount % 90 === 0) {
+                let gap = 130;
+                let minHeight = 40;
+                let topHeight = Math.floor(Math.random() * (canvas.height - gap - (minHeight * 2))) + minHeight;
+
+                obstacles.push({
+                    x: canvas.width,
+                    top: topHeight,
+                    bottom: canvas.height - topHeight - gap,
+                    passed: false
+                });
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let obs = obstacles[i];
+                obs.x -= 2.5;
+
+                ctx.fillStyle = "#26d0ce";
+                ctx.shadowBlur = 0;
+                ctx.fillRect(obs.x, 0, 45, obs.top);
+                ctx.fillRect(obs.x, canvas.height - obs.bottom, 45, obs.bottom);
+
+                if (!obs.passed && obs.x + 45 < player.x) {
+                    obs.passed = true;
+                    score++;
+                    scoreEl.innerText = score;
+                }
+
+                if (
+                    player.x + player.size > obs.x &&
+                    player.x - player.size < obs.x + 45 &&
+                    (player.y - player.size < obs.top || player.y + player.size > canvas.height - obs.bottom)
+                ) {
+                    gameOver();
+                    return;
+                }
+
+                if (obs.x < -45) {
+                    obstacles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        function gameOver() {
+            isGameRunning = false;
+            
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem("obstacle_high_score", highScore);
+                highScoreEl.innerText = highScore;
+            }
+
+            ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 24px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText("انتهت اللعبة! 💥", canvas.width / 2, canvas.height / 2 - 20);
+            
+            ctx.font = "16px Arial";
+            ctx.fillText("اضغط في أي مكان لإعادة اللعب", canvas.width / 2, canvas.height / 2 + 20);
+        }
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 20px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("اضغط للبدء 🎮", canvas.width / 2, canvas.height / 2);
+    </script>
+</body>
+</html>
